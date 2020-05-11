@@ -27,5 +27,6 @@ Git URL:
 
 Google Cloud:
 •	External IP: 34.86.159.162
+	(Used as Development Environment)
 
 more doc ：https://drive.google.com/drive/folders/1J68xcRRmvGMpnHWL-qm0NbBfY7wVjIXf
