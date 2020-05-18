@@ -3,7 +3,7 @@
 Backend Environment Setup:
 •	npm v3.5.2
 •	Node.js v8.10.0
-•	nom init
+•	npm init
 •	npm install express –save
 •	For Windows: Ubuntu 18.04.4
 
