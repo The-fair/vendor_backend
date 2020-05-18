@@ -1,6 +1,7 @@
 # vendor_backend
 
 Frontend Environment Setup (local):
+•	npm init
 •	npm install -g create-react-native-app
 •	npm install -g react-native-cli
 •	npm install -g react-devtools
