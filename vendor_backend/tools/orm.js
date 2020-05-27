@@ -36,7 +36,17 @@ function initDB(){
     });
 }
 
+//the mongoose schema should be defined  here and we may export it later
 
 
+
+
+// the curd actions base on the schema above should be defined here
+
+function saveVendor(){
+    
+}
 
 module.exports.initDB = initDB;
+module.exports.saveVendor = saveVendor;
+

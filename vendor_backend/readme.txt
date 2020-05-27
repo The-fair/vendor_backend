@@ -57,3 +57,5 @@ https://mongoosejs.com/docs/models.html
 1. how do we save log? 
 2. How do we monitor the statistics？ like amount of queries, amount of exceptions throws, how many time each process take... etc
 3. How do we supervise the online service. ( for now i think of using third party demoad process supervisor )
+4. mongodb transaction and roll back???
+5. 
