@@ -46,3 +46,10 @@ https://www.youtube.com/watch?v=TlB_eWDSMt4&t=1173s
 
 mongoose
 https://mongoosejs.com/docs/models.html
+
+
+-------------things to be done-------------------------------------
+
+1. how do we save log? 
+2. How do we monitor the statistics？ like amount of queries, amount of exceptions throws, how many time each process take... etc
+3. How do we supervise the online service. ( for now i think of using third party demoad process supervisor )
