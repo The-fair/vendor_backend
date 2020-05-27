@@ -9,7 +9,7 @@ function initDB(){
     var mongoose = require('mongoose')  
     , connectionString = dbstring
      , options = {};
-	
+	//connection pool size 5
     options = {  
      server: {
      auto_reconnect: true,
