@@ -13,6 +13,7 @@ initializor.init();
 var app = express();
 
 // view engine setup
+// we will not used this (from the design for now, but it may support web in the future)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
