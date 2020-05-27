@@ -28,7 +28,9 @@ the code will parse the config json and init the service with it
 
 -------------------package structure-----------------------=
 
+(most important part to be completed later with a example of backend api service)
 
+......
 
 --------------------learning recourse that you need to understand the project----------
 sources 
