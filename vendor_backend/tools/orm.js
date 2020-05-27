@@ -1,6 +1,6 @@
 // this module defines all the db interaction, 
 //no direct db operations should exist in upper level functions(vendor.js for example)
-//init db connection and create a singleton instance.  see node.js module export in learning source
+//init db connection and create a singleton instance.  see node.js module export in learning source to understand how singleton works
 
 function initDB(){
     var config = require('../config.json');

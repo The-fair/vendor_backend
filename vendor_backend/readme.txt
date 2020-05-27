@@ -42,3 +42,6 @@ https://gywbd.github.io/posts/2014/11/using-exports-nodejs-interface-design-patt
 
 Node 1hour tutorial
 https://www.youtube.com/watch?v=TlB_eWDSMt4&t=1173s
+
+mongoose
+https://mongoosejs.com/docs/models.html
