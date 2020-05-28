@@ -1,0 +1,6 @@
+{
+    "db" : {
+        "connectionString" : "mongodb://localhost:27017/fair_app"
+    }
+   
+}
