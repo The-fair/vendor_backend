@@ -2,11 +2,12 @@
 //no direct db operations should exist in upper level functions(vendor.js for example)
 //init db connection and create a singleton instance.  see node.js module export in learning source to understand how singleton works
 
+var mongoose = require('mongoose')  
+
 function initDB(){
     var config = require('../config.json');
     var dbstring =config.db.connectionString
 
-    var mongoose = require('mongoose')  
     , connectionString = dbstring
      , options = {};
 	//connection pool size 5
@@ -38,7 +39,27 @@ function initDB(){
 
 //the mongoose schema should be defined  here and we may export it later
 
+var vendorSchema = new mongoose.Sechme({
+    pw: String,
+    profile: {
+        name :[{first :String, last: String}],
+        age: Int16Array,
+        gender: Int16Array,
+        selfIntro:String,
+        accsee:{email:String, phone: String},
+        ratingScore: double,
+    },
+    location: {longitude:double, latitue:double},
+    products:[{name: String, price:{number:double, unit:String} }],
+    activities:{
+        _id: mongoose.Types.ObjectId,
+        time: Date,
+        description: String,
+        location:{longitude: double, latitude:double}
+    }
+});
 
+var vendor= mongoose.Model('vendor',vendorSchema);
 
 
 // the curd actions base on the schema above should be defined here

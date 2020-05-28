@@ -28,7 +28,18 @@ the code will parse the config json and init the service with it
 
 -------------------package structure-----------------------=
 
-(most important part to be completed later with a example of backend api service)
+node_modules  : denpendency installed by npm 
+public and view : baiscally just ignore them, they are just for web application. We are now just http api.
+
+app.js : service entrance, init the service register the routers to express framework, error handling, etc 
+
+routers: each api service function are defined here and register to router
+
+tools: get called by api service function. Many implemented detail should be in here. (like orm.js standlize the interaction
+with mongodb and logger.js will be our logger etc)
+
+
+
 
 ......
 
@@ -58,4 +69,4 @@ https://mongoosejs.com/docs/models.html
 2. How do we monitor the statistics？ like amount of queries, amount of exceptions throws, how many time each process take... etc
 3. How do we supervise the online service. ( for now i think of using third party demoad process supervisor )
 4. mongodb transaction and roll back???
-5. 
+5.
