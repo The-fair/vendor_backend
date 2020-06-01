@@ -19,7 +19,7 @@ const addvendorSchema = Joi.object({
 
 //nerver ever ever never never ever never ever ever trust the request send by client 
 router.post('/newvendor',function(req, res){
-    const result = Joi.validate(req.body, addvendorSchema);
+    const result = addvendorSchema.validate(req.body);
     console.log(result);
     if(result.error){
         res.status(400).send(result.error).details[0].message;

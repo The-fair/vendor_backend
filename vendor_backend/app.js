@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //may be some more middleware like auth....
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/vendors/newvendor',vendorRouter);
+app.use('/api/vendors',vendorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
