@@ -1,1 +1,16 @@
 1. post request to add new vendors 
+body field: 
+(required)
+pw  \\ strange name (not passwd) created by old yin
+name 
+age 
+gender
+access type : enum {"email", "phone"}
+email: 
+phone: at least 1 eamil or phone
+longtitude:
+latitude: 
+
+optional: 
+selfintro
+

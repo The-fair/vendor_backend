@@ -2,21 +2,23 @@
 //no direct db operations should exist in upper level functions(vendor.js for example)
 //init db connection and create a singleton instance.  see node.js module export in learning source to understand how singleton works
 
+
+require('dotenv/config')
+
 var mongoose = require('mongoose')  
+  , connectionString = process.env.DB_CONNECTION
+  , options = {};
+	
+options = {  
+  server: {
+    auto_reconnect: true,
+    poolSize: 10
+  },
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+};
 
 function initDB(){
-    var config = require('../config.json');
-    var dbstring =config.db.connectionString
-
-    , connectionString = dbstring
-     , options = {};
-	//connection pool size 5
-    options = {  
-     server: {
-     auto_reconnect: true,
-     poolSize: 5
-    }
-    };
 
     mongoose.connect(connectionString, options, function(err, res) {  
     if(err) {
@@ -38,36 +40,34 @@ function initDB(){
 }
 
 //the mongoose schema should be defined  here and we may export it later
+var Schema = mongoose.Schema
 
-var vendorSchema = new mongoose.Sechme({
+var vendorSchema = new Schema({
     pw: String,
     profile: {
         name :[{first :String, last: String}],
-        age: Int16Array,
-        gender: Int16Array,
+        age: Number,
+        gender: Number,
         selfIntro:String,
-        accsee:{email:String, phone: String},
-        ratingScore: double,
+        access:{email:String, phone: String},
+        ratingScore: Number,
     },
-    location: {longitude:double, latitue:double},
-    products:[{name: String, price:{number:double, unit:String} }],
+    location: {longitude:Number, latitue:Number},
+    products:[{name: String, price:{number:Number, unit:String} }],
     activities:{
         _id: mongoose.Types.ObjectId,
         time: Date,
         description: String,
-        location:{longitude: double, latitude:double}
+        location:{longitude: Number, latitude:Number}
     }
 });
 
-var vendor= mongoose.Model('vendor',vendorSchema);
+var vendor= mongoose.model('vendor',vendorSchema);
 
 
 // the curd actions base on the schema above should be defined here
 
-function saveVendor(){
-    
-}
 
 module.exports.initDB = initDB;
-module.exports.saveVendor = saveVendor;
+module.exports.vendor = vendor;
 

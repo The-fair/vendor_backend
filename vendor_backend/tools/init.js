@@ -8,4 +8,4 @@ function init(){
 
 }
 
-moduel.exports.init = init
+module.exports.init = init

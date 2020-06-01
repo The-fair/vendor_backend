@@ -50,6 +50,9 @@ https://expressjs.com/en/4x/api.html
 https://www.youtube.com/watch?v=G8uL0lFFoN0
 https://www.jianshu.com/p/c5baef64563a
 
+build restful api with nodejs express and mongodb
+https://www.youtube.com/watch?v=vjf774RKrLc
+
 关于nodejs module的关系
 https://www.cnblogs.com/libin-1/p/7127481.html
 
@@ -61,6 +64,11 @@ https://www.youtube.com/watch?v=TlB_eWDSMt4&t=1173s
 
 mongoose
 https://mongoosejs.com/docs/models.html
+
+backend request validation module-------joi
+https://github.com/hapijs/joi
+
+
 
 
 -------------things to be done-------------------------------------

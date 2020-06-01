@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var vendorRouter = require('./routes/vendors');
 // init the service
 var initializor = require('./tools/init')
 initializor.init();
@@ -23,9 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//register api here
+//register api here 
+//may be some more middleware like auth....
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/vendors/newvendor',vendorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
