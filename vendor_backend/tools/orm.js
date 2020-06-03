@@ -45,7 +45,7 @@ var Schema = mongoose.Schema
 var vendorSchema = new Schema({
     pw: String,
     profile: {
-        name :[{first :String, last: String}],
+        name :[{First_name :String, Last_name: String}],
         age: Number,
         gender: Number,
         selfIntro:String,
@@ -62,12 +62,12 @@ var vendorSchema = new Schema({
     }
 });
 
-var vendor= mongoose.model('vendor',vendorSchema);
+var vendors= mongoose.model('vendors',vendorSchema);
 
 
 // the curd actions base on the schema above should be defined here
 
 
 module.exports.initDB = initDB;
-module.exports.vendor = vendor;
+module.exports.vendor = vendors;
 

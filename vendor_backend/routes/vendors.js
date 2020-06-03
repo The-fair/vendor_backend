@@ -8,9 +8,9 @@ var orm = require('../tools/orm')
 
 
 const addvendorSchema = Joi.object({
-    name: Joi.string().min(3).required(),
+    'name' : Joi.string().required(),
     pw : Joi.string().min(8).required(),
-    longtitue: Joi.number().min(-180).max(180).required(),
+    longtitude: Joi.number().min(-180).max(180).required(),
     latitude: Joi.number().min(0).max(90).required(),
     access: Joi.string(),
     email: Joi.string().email(),//validate(['email','phone'])  
@@ -19,29 +19,37 @@ const addvendorSchema = Joi.object({
 
 //nerver ever ever never never ever never ever ever trust the request send by client 
 router.post('/newvendor',function(req, res){
+    //console.log(req);
     const result = addvendorSchema.validate(req.body);
     console.log(result);
     if(result.error){
-        res.status(400).send(result.error).details[0].message;
+        res.status(400).send(req.body);
         return;
     }
+
+    console.log("pass joi validate");
     const model = new orm.vendor({
-        name: req.body.name,
         pw: req.body.pw,
-        longtitue: req.body.longtitue,
-        latitude: req.body.latitude,
-        accsee: req.body.access,
-        email: req.body.email,
-        phone: req.body.phone
+        profile :{
+            name: {firstname: req.body.name, lastname: "some default strange name"},
+            access:{
+                email: req.body.email,
+                phone: req.body.phone      
+            }
+        },
+        location:{
+            longtitue: req.body.longtitue,
+            latitude: req.body.latitude,
+        },
+        product:[],
     });
 
     model.save()
-    .exec()
     .then(data => {
         res.json(data);
     })
     .catch(err =>{
-        res.json({ message: err});
+        res.json({ problem: "mongoose save error" ,message: err});
     });
 });
 
