@@ -69,5 +69,5 @@ var vendors= mongoose.model('vendors',vendorSchema);
 
 
 module.exports.initDB = initDB;
-module.exports.vendor = vendors;
+module.exports.vendors = vendors;
 
