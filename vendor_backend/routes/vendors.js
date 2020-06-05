@@ -31,6 +31,7 @@ router.post('/newvendor',function(req, res){
 
     console.log("pass joi validate");
     const model = new orm.vendors({
+        _id : mongoose.Types.ObjectId(),
         pw: req.body.pw,
         profile :{
             name: {firstname: req.body.name, lastname: "some default strange name"},
@@ -53,6 +54,7 @@ router.post('/newvendor',function(req, res){
         res.json(data);
     })
     .catch(err =>{
+        console.log(err);
         res.status(400).json({ problem: "mongoose save error" ,message: err});
     });
 });
@@ -60,6 +62,7 @@ router.post('/newvendor',function(req, res){
 router.get('/getVendorList',function(req,res){
   orm.vendors.find({},function(err,result){
         if(err){
+            console.log(err);
             res.send(err);
         }else{
             res.json(result);
