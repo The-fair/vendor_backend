@@ -2,8 +2,8 @@
 
 function init(){
     // only 1 init process for now 
-    const orm = require('./orm')
-    orm.initDB();
+    const odm = require('./odm')
+    odm.initDB();
     //to do : kill the process and throw error when any part of init is fail
 
 }

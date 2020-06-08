@@ -1,16 +1,20 @@
 1. post request to add new vendors 
+
+route: http://localhost:3000/api/vendors/newvendor
 body field: 
-(required)
-pw  \\ strange name (not passwd) created by old yin
-name 
-age 
-gender
-access type : enum {"email", "phone"}
-email: 
-phone: at least 1 eamil or phone
-longtitude:
-latitude: 
+{
+    pw : string,
+    firstname : string,
+    lastname: string,
+    email: string,
+    entityName: string,
+    streetAddr : string,
+    city: string,
+    state: string,
+    zipCode: string,
 
-optional: 
-selfintro
 
+}
+
+2. get vendor by email
+http://localhost:3000/api/vendors/getvendorByEmail?email=jren21@syr.edu

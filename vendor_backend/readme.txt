@@ -64,6 +64,7 @@ https://www.youtube.com/watch?v=TlB_eWDSMt4&t=1173s
 
 mongoose
 https://mongoosejs.com/docs/models.html
+https://jzleung.github.io/2016/08/13/mongoose-guide/  mongoose 入门和使用小tips
 
 backend request validation module-------joi
 https://github.com/hapijs/joi

@@ -2,21 +2,21 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 const Joi = require('@hapi/Joi');
-var orm = require('../tools/orm')
+const odm = require('../tools/odm');
 //parse and validate the http request received here
-//call the savevendor function provided by orm.js 
+//call the savevendor function provided by odm.js 
 
 
 const addvendorSchema = Joi.object({
-    name : Joi.string().required(),
+    firstname : Joi.string().required(),
+    lastname: Joi.string().required(),
     pw : Joi.string().min(8).required(),
-    longtitude: Joi.number().min(-180).max(180).required(),
-    latitude: Joi.number().min(0).max(90).required(),
-    access: Joi.string(),
-    email: Joi.string().email(),//validate(['email','phone'])  
-    phone: Joi.string().min(10),
-    age: Joi.number().min(0).max(120).required(),
-    gender: Joi.bool().required()
+    entityName :Joi.string().min(3).required(),
+    email: Joi.string().email(),
+    streetAddr : Joi.string().required(),
+    state: Joi.string().required(),
+    zipCode: Joi.string().min(4).required(),
+    city: Joi.string().required()
 });//.with('name','pw','longtitue','latitude','access').xor('eamil','phone');
 
 //nerver ever ever never never ever never ever ever trust the request send by client 
@@ -25,42 +25,61 @@ router.post('/newvendor',function(req, res){
     const result = addvendorSchema.validate(req.body);
     console.log(result);
     if(result.error){
-        res.status(400).send(req.body);
+        res.status(400).send({problem:"request format problem"});
         return;
     }
 
     console.log("pass joi validate");
-    const model = new orm.vendors({
-        _id : mongoose.Types.ObjectId(),
+    const doc = new odm.vendors({
+        _id: new mongoose.Types.ObjectId(),
         pw: req.body.pw,
-        profile :{
-            name: {firstname: req.body.name, lastname: "some default strange name"},
-            age: req.body.age,
-            gender: req.body.gender,
-            access:{
-                email: req.body.email,
-                phone: req.body.phone      
-            }
+        profile:{
+          name: {
+          first: req.body.firstname,
+          last:  req.body.lastname
         },
-        location:{
-            longtitue: req.body.longtitue,
-            latitude: req.body.latitude,
-        },
-        product:[],
+        access:{
+               email: req.body.email
+             },
+           },
+           businessEntity:{
+             entityName: req.body.entityName,
+             location:{
+               addr:{
+                 streetAddr: req.body.streetAddr,
+                 city: req.body.city,
+                 state: req.body.state,
+                 zipCode: req.body.zipCode,
+               }
+             }
+           }
     });
-
-    model.save()
-    .then(data => {
-        res.json(data);
-    })
-    .catch(err =>{
-        console.log(err);
-        res.status(400).json({ problem: "mongoose save error" ,message: err});
+    //console.log(record);
+    var checkavailable=odm.vendors.count({'profile.access.email':req.body.email},function(err,count){
+        if(err){
+            console.log("meet error when check email availablity ");
+            return;
+        }
+        if(count>0){
+            res.status(200).json( {problem:"email already registed"});
+            
+        }
+        else{
+            doc.save()
+            .then(data => {
+                res.send("save successfully");
+            })
+            .catch(err =>{
+                console.log(err);
+                res.status(400).json({ problem: "mongoose save error" ,message: err});
+            });
+        }
     });
+  
 });
 
 router.get('/getVendorList',function(req,res){
-  orm.vendors.find({},function(err,result){
+  odm.vendors.find({},function(err,result){
         if(err){
             console.log(err);
             res.send(err);
@@ -68,6 +87,19 @@ router.get('/getVendorList',function(req,res){
             res.json(result);
         }
   });
+});
+
+router.get('/getVendorByEmail',function(req,res){
+     var email = req.query.email;
+     console.log(email);
+     odm.vendors.find({'profile.access.email' : email}, function(err,doc){
+        if(err){
+            console.log(err);
+            res.send(err);
+        }else{
+            res.send(doc);
+        }
+     })
 });
 
 module.exports = router;

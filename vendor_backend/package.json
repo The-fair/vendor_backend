@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "@mongoosejs/double": "^0.2.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -15,6 +16,8 @@
     "jade": "~1.11.0",
     "joi": "^14.3.1",
     "mongoose": "^5.9.16",
+    "mongoose-int32": "^0.3.1",
+    "mongoose-long": "^0.3.0",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.4"
   }
