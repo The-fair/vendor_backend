@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-const Joi = require('@hapi/Joi');
+const Joi = require('@hapi/joi');
 const odm = require('../tools/odm');
 //parse and validate the http request received here
 //call the savevendor function provided by odm.js 
@@ -62,7 +62,7 @@ router.post('/newvendor',function(req, res){
         }
         if(count>0){
             res.status(200).json( {problem:"email already registed"});
-            
+
         }
         else{
             doc.save()
