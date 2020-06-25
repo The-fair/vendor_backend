@@ -128,22 +128,24 @@ router.get('/note_no_attMarket',function (req,res) {
             res.send(err);
         }
         else{
-            console.log(doc.length);
-            var attmarket = doc.attMarket;
-            console.log(attmarket);
+
+            // var attmarket = doc.attMarket;
+            // console.log(attmarket.marketName);
             //res.send(doc.profile.name.first);
-            console.log(doc);
-            var count = 0;
+            //var count = 0;
             
-            for(var i in doc.attMarket){
-                count += 1;
+
+            var return_arr = new Array();
+
+            var attmarket = doc.attMarket;
+            for(var i in attmarket){
+                console.log(attmarket[i].marketName);
+                return_arr.push(attmarket[i].marketName);
             }
-            if(count == 0){
-                res.send('no att');
-            }
-            else{
-                res.send('good');
-            }
+            res.status(200).json({
+                marketName : return_arr
+            });
+
         }
     });
 });
