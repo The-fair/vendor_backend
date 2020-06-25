@@ -99,17 +99,53 @@ router.get('/getVendorByEmail',function(req,res){
         }else{
             console.log(doc);
             res.status(200).json({
-                firstname : doc.profile.firstname,
-                midname : doc.profile.midname,
-                lastname : doc.profile.lastname, 
-                age : doc.profile.age, 
+                firstname : doc.profile.name.first,
+                midname : doc.profile.name.middle,
+                lastname : doc.profile.name.last, 
+                age : doc.profile.age,
                 password : doc.pw, 
                 entity_name : doc.businessEntity.entityName, 
                 address : doc.businessEntity.addr, 
                 email : doc.profile.access.email
             });
         }
-     })
+     });
+});
+// async function add(arr) {
+//     var count = 0;
+//     for(var i in arr){
+//         await count += 1;
+//     }
+//     return count;
+// }
+router.get('/note_no_attMarket',function (req,res) {
+    var email = req.query.email;
+    console.log(email);
+
+    odm.vendors.findOne({'profile.access.email' : email}, function (err,doc) {
+        if(err){
+            console.log(err);
+            res.send(err);
+        }
+        else{
+            console.log(doc.length);
+            var attmarket = doc.attMarket;
+            console.log(attmarket);
+            //res.send(doc.profile.name.first);
+            console.log(doc);
+            var count = 0;
+            
+            for(var i in doc.attMarket){
+                count += 1;
+            }
+            if(count == 0){
+                res.send('no att');
+            }
+            else{
+                res.send('good');
+            }
+        }
+    });
 });
 
 module.exports = router;

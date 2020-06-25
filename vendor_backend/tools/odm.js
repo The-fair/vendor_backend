@@ -102,6 +102,10 @@ const vendorSchema = new mongoose.Schema({
       end: Date
     }
   },
+  attMarket:[{
+    _id: mongoose.ObjectId,
+    marketName: String
+  }],
   location: {
       addr:{
         streetAddr: String,
