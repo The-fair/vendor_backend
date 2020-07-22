@@ -149,5 +149,26 @@ router.get('/note_no_attMarket',function (req,res) {
         }
     });
 });
+router.get('/notification_box',function (req,res) {
+    var email = req.query.email;
+    console.log(email);
 
+    odm.vendors.findOne({'profile.access.email' : email}, function (err,doc) {
+        if(err){
+            console.log(err);
+            res.send(err);
+        }
+        else{
+
+            var return_arr = new Array();
+
+            return_arr.push("you didnot regist in any markets")
+
+            res.status(200).json({
+                notice : return_arr
+            });
+
+        }
+    });
+});
 module.exports = router;
