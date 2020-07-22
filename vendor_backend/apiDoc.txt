@@ -18,3 +18,6 @@ body field:
 
 2. get vendor by email
 http://localhost:3000/api/vendors/getvendorByEmail?email=jren21@syr.edu
+
+3. get vendor picture by email
+http://localhost:3000/api/vendors/getPicurl?email=test1@gmail.com

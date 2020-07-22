@@ -112,4 +112,20 @@ router.get('/getVendorByEmail',function(req,res){
      })
 });
 
+router.get('/getPicurl',function(req,res){
+    var email = req.query.email;
+    console.log(email);
+    odm.vendors.findOne({'profile.access.email' : email}, function(err,doc){
+       if(err){
+           console.log(err);
+           res.send(err);
+       }else{
+           console.log(doc);
+           res.status(200).json({
+               ulraddress : doc.profile.avatar.avatarName,
+           });
+       }
+    })
+});
+
 module.exports = router;
