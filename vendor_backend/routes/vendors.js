@@ -139,7 +139,7 @@ router.get('/note_no_attMarket',function (req,res) {
 
             var attmarket = doc.attMarket;
             for(var i in attmarket){
-                console.log(attmarket[i].marketName);
+                //console.log(attmarket[i].marketName);
                 return_arr.push(attmarket[i].marketName);
             }
             res.status(200).json({
